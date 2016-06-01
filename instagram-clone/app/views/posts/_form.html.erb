@@ -1,4 +1,14 @@
 <%= form_for @post do |f| %>
+  <% if @post.errors.any? %>
+    <div>
+      <%= pluralize(@post.errors.count, "error") %> prevented this post from being submitted:
+      <ul>
+        <% @post.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <div>
     <%= f.label :title %><br/>
     <%= f.text_field :title %>
